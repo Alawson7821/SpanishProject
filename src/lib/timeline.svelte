@@ -26,9 +26,9 @@
             {/each}
         </div>
         <div id="eventYears">
-            {#each timelineEvents as { name, time, begin, end, lasted, eventType }}
+            {#each timelineEvents as { name, time, begin, end, lasted, eventType, description }, i}
                 <div id="TimelineEvent">
-                    <button id="timelineEventButton" on:mouseenter={() => dispatch('timeBtnHover', {name, time, begin, end, lasted, eventType})} on:mouseleave={() => dispatch('timeBtnHoverStop')}>{name}</button>
+                    <button id="timelineEventButton" on:mouseenter={() => dispatch('timeBtnHover', {name: name, time:time, begin:begin, end:end, lasted:lasted, eventType:eventType, desc: description})} on:mouseleave={() => dispatch('timeBtnHoverStop')}>{name}</button>
                 </div>
             {/each}
         </div>
@@ -46,8 +46,8 @@
         background-color: rgba(255, 255, 255, .15);
         backdrop-filter: blur(5px);  
         float: left;
-        -webkit-user-select: none; /* Safari */
-        -ms-user-select: none; /* IE 10 and IE 11 */
+        -webkit-user-select: none;
+        -ms-user-select: none;
         user-select: none;
     }
 

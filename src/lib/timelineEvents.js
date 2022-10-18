@@ -12,16 +12,4 @@ export const timelineEvents = [
         name: "Spaniards colonize the Americas",
         begin: 1000
     },
-    {
-        name: "Spaniards colonize the Americas",
-        begin: 1000
-    },
-    {
-        name: "Spaniards colonize the Americas",
-        begin: 1000
-    },
-    {
-        name: "Spaniards colonize the Americas",
-        begin: 1000
-    },
 ]
