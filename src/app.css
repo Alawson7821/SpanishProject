@@ -5,4 +5,5 @@
 }
 #wrapper{
   height: 100%;
+  backdrop-filter: brightness(9%);
 }

@@ -2,10 +2,13 @@
     import { timelineEvents } from './timelineEvents';
     import { createEventDispatcher } from 'svelte';
     import { each } from 'svelte/internal';
+    import { fly } from "svelte/transition";
+
+    export let eventsVisible;
 
     const dispatch = createEventDispatcher();
 
-    const timeLineTicks = [-1000, -750, -500, -250, 0, 250, 500, 750, 1000, 1500, 2000]
+    const timeLineTicks = [-1000, -750, -500, -250, 0, 250, 500, 750, 1000, 1500, 2000];
 
     function toYrStr(int){
         if(int > 0){
@@ -26,11 +29,13 @@
             {/each}
         </div>
         <div id="eventYears">
-            {#each timelineEvents as { name, time, begin, end, lasted, eventType, description }, i}
-                <div id="TimelineEvent">
-                    <button id="timelineEventButton" on:mouseenter={() => dispatch('timeBtnHover', {name: name, time:time, begin:begin, end:end, lasted:lasted, eventType:eventType, desc: description})} on:mouseleave={() => dispatch('timeBtnHoverStop')}>{name}</button>
-                </div>
-            {/each}
+            {#if eventsVisible}
+                {#each timelineEvents as { name, time, begin, end, lasted, eventType, description, timelineMargin }, i}
+                    <div id="TimelineEvent">
+                        <button id="timelineEventButton" on:mouseenter={() => dispatch('timeBtnHover', {name: name, time:time, begin:begin, end:end, lasted:lasted, eventType:eventType, desc: description})} on:mouseleave={() => dispatch('timeBtnHoverStop')} style="margin-top:{timelineMargin}" on:click={() => dispatch('timeBtnClick', {name: name, time:time, begin:begin, end:end, lasted:lasted, eventType:eventType, desc: description})} transition:fly="{{x:-400, duration:400}}">{name}</button>
+                    </div>
+                {/each}
+            {/if}
         </div>
     </div>
 </div>
@@ -49,6 +54,7 @@
         -webkit-user-select: none;
         -ms-user-select: none;
         user-select: none;
+        margin-bottom: 10px;
     }
 
     #ticks{

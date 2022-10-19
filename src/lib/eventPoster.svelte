@@ -24,7 +24,7 @@
 
 
     #EventPoster{
-        font-family: 'Roboto', sans-serif;
+        font-family: 'Roboto Mono', monospace;
         border-color: #ffffff5e;
         border-style:solid;
         border-width: 1px;
@@ -35,5 +35,17 @@
         width: 30%;
         height: 400px;
         float: left;
+    }
+
+    #EventPoster h2 {
+        padding-left: 10px;
+    }
+
+    #EventPoster h3 {
+        padding-left: 10px;
+    }
+
+    #EventPoster p {
+        padding-left: 10px;
     }
 </style>
