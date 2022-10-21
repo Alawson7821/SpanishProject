@@ -3,12 +3,14 @@
   import EventPoster from './lib/eventPoster.svelte';
   import EventPage from './lib/eventPage.svelte'
   let posterVis = false;
-  let posterData;
-
   let eventsVisible = true;
+  let EventPageVis = false;
+  let highlightVis = false;
 
+  let posterData;
   function timeBtnHoverHandler(event){
     posterVis = true;
+    highlightVis = true;
 
     posterData = {
       eventName: event.detail.name,
@@ -19,14 +21,21 @@
     }
   }
 
+  function timeBtnHoverStopHandler(){
+    posterVis = false;
+    highlightVis = false;
+  }
+
   function timeBtnClickHandler(event){
     eventsVisible = false;
     posterVis = false;
+    EventPageVis = true;
   }
 </script>
 
 <div id="wrapper">
-  <Timeline on:timeBtnHover={timeBtnHoverHandler} on:timeBtnHoverStop={() => posterVis = false} on:timeBtnClick={timeBtnClickHandler} eventsVisible={eventsVisible}/>
+  <Timeline on:timeBtnHover={timeBtnHoverHandler} on:timeBtnHoverStop={timeBtnHoverStopHandler} on:timeBtnClick={timeBtnClickHandler} eventsVisible={eventsVisible} highlightVis={highlightVis}/>
   <EventPoster posterVis={posterVis} posterData={posterData}/>
-  <EventPage/>
 </div>
+
+<EventPage EventPageVis={EventPageVis} pageData={posterData}/>

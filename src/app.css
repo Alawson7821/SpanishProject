@@ -1,8 +1,7 @@
 :root {
   background-color: #242424;
-  height: 100%;
-  width:100%;
 }
+
 #wrapper{
   height: 100%;
   backdrop-filter: brightness(9%);

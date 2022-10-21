@@ -5,6 +5,7 @@
     import { fly } from "svelte/transition";
 
     export let eventsVisible;
+    export let highlightVis;
 
     const dispatch = createEventDispatcher();
 
@@ -23,6 +24,11 @@
 
 <div id="Timeline" style="height:100%;">
     <div id="background">
+        {#if highlightVis}
+            <div id="highlight">
+            
+            </div>
+        {/if}
         <div id="ticks">
             {#each timeLineTicks as {}, i}
                 <div id="tick"><p id="tickText">{toYrStr(timeLineTicks[i])}</p></div>
@@ -102,5 +108,17 @@
         font-family: 'Roboto Mono', monospace;
         padding-left: 10px;
         white-space: nowrap;
+
     }   
+
+    #highlight{
+        background-color: blue;
+        width: 10px;
+        height: 10px;
+        vertical-align:top;
+        display: inline-block;
+        margin-left: 5px;
+        margin-top: 90px;
+        border-radius: 20px;
+    }
 </style>

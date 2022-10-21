@@ -10,9 +10,7 @@ export const timelineEvents = [
         timelineMargin: "10%",
         images: {
             primary: "https://romeonrome.com/files/2015/11/RomanTheater_1.jpg",
-            others: {
-                
-            }
+            others: []
         }
     },
     {
