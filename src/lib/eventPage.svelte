@@ -1,10 +1,12 @@
 <script>
+    import { transition_in } from 'svelte/internal';
+import {fade} from 'svelte/transition';
     export let EventPageVis;
     export let pageData;
 </script>
 
 {#if EventPageVis}
-    <div id="EventPage">
+    <div id="EventPage" transition:fade>
         <div id="eventText">
             <h1>{pageData.eventName}</h1>
             <h2>{pageData.eventTime}</h2>

@@ -10,7 +10,6 @@
   let posterData;
   function timeBtnHoverHandler(event){
     posterVis = true;
-    highlightVis = true;
 
     posterData = {
       eventName: event.detail.name,
@@ -18,6 +17,7 @@
       eventTimeBegin: event.detail.begin,
       eventTimeEnd: event.detail.end,
       eventDesc: event.detail.desc,
+      eventTlMargin: event.detail.timelineMargin,
     }
   }
 
@@ -26,15 +26,19 @@
     highlightVis = false;
   }
 
-  function timeBtnClickHandler(event){
+  function timeBtnClickHandler(){
     eventsVisible = false;
     posterVis = false;
+  }
+
+  function timeBtnClickHandlerPgVis(){
     EventPageVis = true;
   }
+
 </script>
 
 <div id="wrapper">
-  <Timeline on:timeBtnHover={timeBtnHoverHandler} on:timeBtnHoverStop={timeBtnHoverStopHandler} on:timeBtnClick={timeBtnClickHandler} eventsVisible={eventsVisible} highlightVis={highlightVis}/>
+  <Timeline on:timeBtnHover={timeBtnHoverHandler} on:timeBtnHoverStop={timeBtnHoverStopHandler} on:timeBtnClick={timeBtnClickHandler} eventsVisible={eventsVisible} highlightVis={highlightVis} on:transitionEnd={timeBtnClickHandlerPgVis}/>
   <EventPoster posterVis={posterVis} posterData={posterData}/>
 </div>
 

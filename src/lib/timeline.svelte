@@ -6,6 +6,8 @@
 
     export let eventsVisible;
     export let highlightVis;
+    
+    let ticksMargin = "10px";
 
     const dispatch = createEventDispatcher();
 
@@ -20,25 +22,28 @@
             return 0
         }
     }
+
+    function hoverDispatch(i){
+        dispatch('timeBtnHover', {name: timelineEvents[i].name, time:timelineEvents[i].time, begin:timelineEvents[i].begin, end:timelineEvents[i].end, lasted:timelineEvents[i].lasted, eventType:timelineEvents[i].eventType, desc: timelineEvents[i].description});
+    }
+
 </script>
 
 <div id="Timeline" style="height:100%;">
     <div id="background">
         {#if highlightVis}
-            <div id="highlight">
-            
-            </div>
+            <div id="highlight"></div>
         {/if}
         <div id="ticks">
             {#each timeLineTicks as {}, i}
                 <div id="tick"><p id="tickText">{toYrStr(timeLineTicks[i])}</p></div>
             {/each}
         </div>
-        <div id="eventYears">
+        <div id="events">
             {#if eventsVisible}
                 {#each timelineEvents as { name, time, begin, end, lasted, eventType, description, timelineMargin }, i}
                     <div id="TimelineEvent">
-                        <button id="timelineEventButton" on:mouseenter={() => dispatch('timeBtnHover', {name: name, time:time, begin:begin, end:end, lasted:lasted, eventType:eventType, desc: description})} on:mouseleave={() => dispatch('timeBtnHoverStop')} style="margin-top:{timelineMargin}" on:click={() => dispatch('timeBtnClick', {name: name, time:time, begin:begin, end:end, lasted:lasted, eventType:eventType, desc: description})} transition:fly="{{x:-400, duration:400}}">{name}</button>
+                        <button id="timelineEventButton" on:mouseenter={() => hoverDispatch(i)} on:mouseleave={() => dispatch('timeBtnHoverStop')} on:click={() => dispatch('timeBtnClick', {name: name, time:time, begin:begin, end:end, lasted:lasted, eventType:eventType, desc: description, margin: timelineMargin})} transition:fly="{{x:-400, duration:400}}" style="margin-top: {timelineMargin}" on:outroend="{() => dispatch('transitionEnd')}">{name}</button>
                     </div>
                 {/each}
             {/if}
@@ -64,7 +69,7 @@
     }
 
     #ticks{
-        margin-left: 10px;
+        margin-left: 15px;
         display: inline-block;
     }
 
@@ -83,7 +88,7 @@
         background-color: rgba(255, 255, 255, .15);
     }
 
-    #eventYears{
+    #events{
         padding-left: 90px;
         margin-top: 100px;
         padding-right: 10px;
@@ -96,17 +101,18 @@
     #tick{
         margin-top: 100px;
         margin-bottom: 100px;
-        width: 20px;
+        width: 15px;
         height: 2px;
         background-color: #ffffff;
         border-radius: 2px;
         border-width: 10px;
+        margin-left: 5px;
     }
 
     #tickText{
         padding-top: 5px;
         font-family: 'Roboto Mono', monospace;
-        padding-left: 10px;
+        padding-left: 5px;
         white-space: nowrap;
 
     }   
