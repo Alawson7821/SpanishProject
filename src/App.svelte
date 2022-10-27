@@ -17,7 +17,7 @@
       eventTimeBegin: event.detail.begin,
       eventTimeEnd: event.detail.end,
       eventDesc: event.detail.desc,
-      eventTlMargin: event.detail.timelineMargin,
+      eventTlMargin: event.detail.margin,
     }
   }
 

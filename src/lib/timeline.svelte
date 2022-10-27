@@ -24,12 +24,12 @@
     }
 
     function hoverDispatch(i){
-        dispatch('timeBtnHover', {name: timelineEvents[i].name, time:timelineEvents[i].time, begin:timelineEvents[i].begin, end:timelineEvents[i].end, lasted:timelineEvents[i].lasted, eventType:timelineEvents[i].eventType, desc: timelineEvents[i].description});
+        dispatch('timeBtnHover', {name: timelineEvents[i].name, time:timelineEvents[i].time, begin:timelineEvents[i].begin, end:timelineEvents[i].end, lasted:timelineEvents[i].lasted, eventType:timelineEvents[i].eventType, desc: timelineEvents[i].description, margin: timelineEvents[i].timelineMargin});
     }
 
 </script>
 
-<div id="Timeline" style="height:100%;">
+<div id="Timeline">
     <div id="background">
         {#if highlightVis}
             <div id="highlight"></div>
@@ -43,7 +43,7 @@
             {#if eventsVisible}
                 {#each timelineEvents as { name, time, begin, end, lasted, eventType, description, timelineMargin }, i}
                     <div id="TimelineEvent">
-                        <button id="timelineEventButton" on:mouseenter={() => hoverDispatch(i)} on:mouseleave={() => dispatch('timeBtnHoverStop')} on:click={() => dispatch('timeBtnClick', {name: name, time:time, begin:begin, end:end, lasted:lasted, eventType:eventType, desc: description, margin: timelineMargin})} transition:fly="{{x:-400, duration:400}}" style="margin-top: {timelineMargin}" on:outroend="{() => dispatch('transitionEnd')}">{name}</button>
+                        <button id="timelineEventButton" on:mouseenter={() => hoverDispatch(i)} on:mouseleave={() => dispatch('timeBtnHoverStop')} on:click={() => dispatch('timeBtnClick', {name: name, time:time, begin:begin, end:end, lasted:lasted, eventType:eventType, desc: description, margin: timelineMargin})} transition:fly="{{x:-400, duration:400}}" style="margin-top: {timelineMargin}px" on:outroend="{() => dispatch('transitionEnd')}">{name}</button>
                     </div>
                 {/each}
             {/if}

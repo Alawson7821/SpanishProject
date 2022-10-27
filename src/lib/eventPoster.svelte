@@ -11,7 +11,7 @@
 </script>
 
 {#if posterVis && nextPostVis}
-    <div id="EventPoster" transition:fly="{{y:200, duration:400}}" on:outrostart={() => nextPostVis = false} on:outroend={() => nextPostVis = true}>
+    <div id="EventPoster" transition:fly="{{y:200, duration:400}}" on:outrostart={() => nextPostVis = false} on:outroend={() => nextPostVis = true} style="margin-top: calc({posterData.eventTlMargin}px + 100px)">
         <h2>{posterData.eventName}</h2>
         <h3>{posterData.eventTime}</h3>
         <p>{posterData.eventDesc}</p>

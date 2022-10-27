@@ -7,7 +7,7 @@ export const timelineEvents = [
         lasted: 1000,
         eventType: "Import",
         description: "Da Romans take over Iberia",
-        timelineMargin: "10%",
+        timelineMargin: 5,
         images: {
             primary: "https://romeonrome.com/files/2015/11/RomanTheater_1.jpg",
             others: []
@@ -16,6 +16,6 @@ export const timelineEvents = [
     {
         name: "Spaniards colonize the Americas",
         begin: 1000,
-        timelineMargin: "90%"
+        timelineMargin: 500
     },
 ]
