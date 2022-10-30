@@ -15,6 +15,7 @@
     "vite": "^3.1.0"
   },
   "dependencies": {
+    "remixicon": "^2.5.0",
     "svelte-viewport-info": "^1.0.0"
   }
 }

@@ -12,6 +12,7 @@
     posterVis = true;
 
     posterData = {
+      eventIndex: event.detail.index,
       eventName: event.detail.name,
       eventTime: event.detail.time,
       eventTimeBegin: event.detail.begin,
@@ -35,6 +36,14 @@
     EventPageVis = true;
   }
 
+  function evPgBackButton(){
+    EventPageVis = false;
+  }
+
+  function evPgBackTlVis(){
+    eventsVisible = true;
+  }
+
 </script>
 
 <div id="wrapper">
@@ -42,4 +51,4 @@
   <EventPoster posterVis={posterVis} posterData={posterData}/>
 </div>
 
-<EventPage EventPageVis={EventPageVis} pageData={posterData}/>
+<EventPage EventPageVis={EventPageVis} pageData={posterData} on:backBtnClick={evPgBackButton} on:transitionEnd={evPgBackTlVis}/>
