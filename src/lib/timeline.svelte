@@ -2,12 +2,10 @@
     import { timelineEvents } from './timelineEvents';
     import { createEventDispatcher } from 'svelte';
     import { each } from 'svelte/internal';
-    import { fly } from "svelte/transition";
+    import { fade } from "svelte/transition";
 
     export let eventsVisible;
     export let highlightVis;
-    
-    let ticksMargin = "10px";
 
     const dispatch = createEventDispatcher();
 
@@ -24,7 +22,7 @@
     }
 
     function evDispatch(eventType, i){
-        dispatch(eventType, {index: i, name: timelineEvents[i].name, time:timelineEvents[i].time, begin:timelineEvents[i].begin, end:timelineEvents[i].end, lasted:timelineEvents[i].lasted, eventType:timelineEvents[i].eventType, desc: timelineEvents[i].description, margin: timelineEvents[i].timelineMargin});
+        dispatch(eventType, {index: i, name: timelineEvents[i].name, time:timelineEvents[i].time, begin:timelineEvents[i].begin, eventType:timelineEvents[i].eventType, desc: timelineEvents[i].description, margin: timelineEvents[i].timelineMargin});
     }
 
 </script>
@@ -43,7 +41,7 @@
             {#if eventsVisible}
                 {#each timelineEvents as { name, timelineMargin }, i}
                     <div id="TimelineEvent">
-                        <button id="timelineEventButton" on:mouseenter={() => evDispatch('timeBtnHover', i)} on:mouseleave={() => dispatch('timeBtnHoverStop')} on:click={() => evDispatch('timeBtnClick', i)} transition:fly="{{x:-400, duration:400}}" style="margin-top: {timelineMargin}px" on:outroend="{() => dispatch('transitionEnd')}">{name}</button>
+                        <button id="timelineEventButton" on:mouseenter={() => evDispatch('timeBtnHover', i)} on:mouseleave={() => dispatch('timeBtnHoverStop')} on:click={() => evDispatch('timeBtnClick', i)} transition:fade style="margin-top: {timelineMargin}px" on:outroend="{() => dispatch('transitionEnd')}">{name}</button>
                     </div>
                 {/each}
             {/if}
@@ -82,6 +80,7 @@
         background-color: rgba(0, 0, 0, 0);
         border-radius: 10px;
         text-align: center;
+        margin-left: 20px;
     }
 
     #timelineEventButton:hover{

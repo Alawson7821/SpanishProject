@@ -14,7 +14,6 @@
     <div id="EventPoster" transition:fly="{{y:200, duration:400}}" on:outrostart={() => nextPostVis = false} on:outroend={() => nextPostVis = true} style="margin-top: calc(({posterData.eventIndex}px * 41) + {posterData.eventTlMargin}px + 100px)">
         <h2>{posterData.eventName}</h2>
         <h3>{posterData.eventTime}</h3>
-        <p>{posterData.eventDesc}</p>
     </div>
 {/if}
 
@@ -33,7 +32,6 @@
         backdrop-filter: blur(5px);
         margin-left: 20px;
         width: 30%;
-        height: 400px;
         float: left;
     }
 
@@ -42,10 +40,6 @@
     }
 
     #EventPoster h3 {
-        padding-left: 10px;
-    }
-
-    #EventPoster p {
         padding-left: 10px;
     }
 </style>
