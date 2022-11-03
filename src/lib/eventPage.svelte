@@ -24,7 +24,7 @@
             <p>{pageData.eventDesc}</p>
         </div>
         <div id="eventMap">
-
+            <img src="/src/assets/map.svg" alt="hi">
         </div>
         <div id="eventGallery">
 
