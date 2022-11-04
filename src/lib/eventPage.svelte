@@ -1,7 +1,8 @@
 <script>
     import {fade} from 'svelte/transition';
     import { createEventDispatcher } from 'svelte';
-    import 'remixicon/fonts/remixicon.css'
+    import 'remixicon/fonts/remixicon.css';
+    import './map.svelte';
     export let EventPageVis;
     export let pageData;
 
@@ -24,7 +25,7 @@
             <p>{pageData.eventDesc}</p>
         </div>
         <div id="eventMap">
-            <img src="/src/assets/map.svg" alt="hi">
+            
         </div>
         <div id="eventGallery">
 
