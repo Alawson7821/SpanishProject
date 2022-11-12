@@ -2,7 +2,7 @@
     import {fade} from 'svelte/transition';
     import { createEventDispatcher } from 'svelte';
     import 'remixicon/fonts/remixicon.css';
-    import './map.svelte';
+    import Map from './map.svelte';
     export let EventPageVis;
     export let pageData;
 
@@ -10,6 +10,12 @@
     
     function backBtnClick(){
         dispatch('backBtnClick')
+    }
+
+    let mapData = {
+        shownRegions: ['Afghanistan', 'Brazil'],
+        width: '2000px',
+        height: '857px'
     }
 
 </script>
@@ -25,7 +31,7 @@
             <p>{pageData.eventDesc}</p>
         </div>
         <div id="eventMap">
-            
+            <Map mapData={mapData}/>
         </div>
         <div id="eventGallery">
 
