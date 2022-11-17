@@ -13,7 +13,7 @@
     }
 
     let mapData = {
-        shownRegions: ['Afghanistan', 'Brazil'],
+        shownRegions: ['Brazil', 'Bolivia', 'Angola'],
         width: '2000px',
         height: '857px'
     }
